@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>忘记密码</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta content="telephone=no" name="format-detection">
+<link rel="stylesheet" href="css/sm.min.css">
+<link rel="stylesheet" href="css/font.css">
+<link rel="stylesheet" href="css/login.css">
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/init.js"></script>
+<script>
+$.config = {
+    // 路由功能开关过滤器，返回 false 表示当前点击链接不使用路由
+    routerFilter: function($link) {
+        // 某个区域的 a 链接不想使用路由功能
+        if ($link.is('.disable-router a')) {
+            return false;
+        }
+        return true;
+    }
+};
+</script>
+</head>
+<body>
+  <!-- 你的html代码 -->
+    <div class="page page-current" id="page_forget">
+        <header class="bar bar-nav">
+            <a class="pull-left open-panel" href="login.html">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title" style="z-index:-1;background-color:#087bbc;color:#ffffff;font-weight:100;">忘记密码</h1>
+        </header>
+
+        <div class="contain" style="margin-top:4rem;">
+            <ul>
+                <li>
+                    <span><img src="img/login_phone.png" alt=""/></span>
+                    <input type="text" placeholder="请输入手机号码" id="phone" />
+                </li>
+                <li>
+                    <span><img src="img/login_pass.png" alt=""/></span>
+                    <input type="password" placeholder="请输入密码" id="newpwd" />
+                </li>
+
+                <li style="width:60%;float:left">
+                    <span style="width: 19.5%;" class="input-phone"><img alt="" src="img/login_pass_1.png"></span>
+                    <input type="text" style="width:80.5%" class="input input_test" placeholder="请输入图形验证码" id="checkcode">
+                </li>
+                <img id="tuxingyanzhengma" onclick="javascript:tuxing_yanzheng(this);" src="http://apistore.51daniu.cn/rest/index.php?c=index&amp;a=checkcode&amp;t=1467090973">
+                <h1 style="clear:both;margin:0;padding:0;"></h1>
+
+                <li style="width:60%;float:left">
+                    <span style="width: 19.5%;" class="input-phone"><img alt="" src="img/login_pass_2.png"></span>
+                    <input type="text" style="width:80.5%" class="input input_test" placeholder="请输入手机验证码" id="smscode">
+                </li>
+                <input type="button" value="获取验证码" class="btn btn_test" id="btnSendCode">
+                <li style="border:0 none;clear:both;">
+                    <a href="javascript:;" class="a1" id="xiugai">马上修改</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+<script type="text/javascript" src="js/sm.js"></script>
+<script type="text/javascript" src="js/sm-extend.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(document).on("pageInit", "#page_forget", function(e, id, page) {
+              // 短信验证码+图形验证码
+              var InterValObj; //timer变量，控制时间
+              var count = 60; //间隔函数，1秒执行
+              var curCount;//当前剩余秒数
+              $(page).on('click','#btnSendCode',function () {
+                  curCount = count;
+                  var phone = $("#phone").val();//手机号码
+                  if(phone != ""){
+                      var checkcode = $('#checkcode').val();
+                      if(checkcode != ''){
+                          $.post(Apistore, {a: 'codecheck',checkcode:checkcode}, function(response){
+                              console.log(response);
+                              var responseObj=$.parseJSON(response);
+                              if(responseObj.code == 200){
+                                  //产生验证码
+                                  if(phone.match(/^[1][0-9]{10}$/)) {
+                                      //设置button效果，开始计时
+                                      $("#btnSendCode").attr("disabled", "true");
+                                      $("#btnSendCode").val(curCount + "秒后重发");
+                                      InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+                                      //向后台发送处理数据
+                                       $.post(RestApi, { c: 'user',a: 'sendCode',phone:phone,checkcode:checkcode}, function(response){
+                                            console.log(response);
+                                       });
+                                  }else{
+                                      $.alert('手机号码格式不正确！',function(){
+                                          tuxing_yanzheng('#tuxingyanzhengma');
+                                      });
+                                  }
+                              }else{
+                                  $.alert('图形验证码不正确！',function(){
+                                      tuxing_yanzheng('#tuxingyanzhengma');
+                                  });
+                              }
+                          });
+                      }else{
+                          $.alert('请先输入图形验证码！',function(){
+                              tuxing_yanzheng('#tuxingyanzhengma');
+                          });
+                      }
+                  }else{
+                      $.alert('手机号码不能为空！',function(){
+                          tuxing_yanzheng('#tuxingyanzhengma');
+                      });
+                  }
+              });
+
+              //timer处理函数
+              function SetRemainTime() {
+                  if (curCount == 0) {
+                      window.clearInterval(InterValObj);//停止计时器
+                      $("#btnSendCode").removeAttr("disabled");//启用按钮
+                      $("#btnSendCode").val("重新发送验证码");
+                  }
+                  else {
+                      curCount--;
+                      $("#btnSendCode").val(curCount + "秒后重发");
+                  }
+              }
+
+              // 修改密码
+              $(page).on('click','#xiugai',function () {
+                  var phone = $("#phone").val();
+                  var newpwd = $('#newpwd').val();
+                  var smscode = $('#smscode').val();
+                  if(phone != '' && newpwd != '' && smscode != ''){
+                      $.post(RestApi, { c: 'user',a: 'forgetpwd',phone:phone,newpwd:newpwd,smscode:smscode}, function(response){
+                          console.log(response);
+                          var responseObj=$.parseJSON(response);
+                          if(responseObj.code == 200){
+                              $.alert(responseObj.message,function(){
+                                  window.location.href = 'login.html';
+                              });
+                          }else{
+                              $.alert(responseObj.message);
+                          }
+                      });
+                  }else{
+                      $.alert('请将信息填写完整！');
+                  }
+              });
+        });
+        $.init();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+.content1{
+  background-image:url('../img/login_bg.png');
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+}
+.page-current>.logo{
+  text-align: center;
+  padding:4.2rem 0 1rem;
+}
+.page-current>.logo>img{
+  width:5rem;
+}
+.page-current>.contain{
+  width:80%;
+  margin:0 auto;
+}
+.page-current>.contain>ul{
+  padding:0;
+}
+.page-current>.contain>ul>li{
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  height: 1.9rem;
+  margin-bottom: 1.35rem;
+  width: 100%;
+}
+.page-current>.contain>ul>li>span{
+  float: left;
+  display: inline-block;
+  height: 100%;
+  width: 12.5%;
+}
+.page-current>.contain>ul>li>span>img{
+  height: 100%;
+  width: 100%;
+}
+.page-current>.contain>ul>li>input{
+  background: #f6f7f8 none repeat scroll 0 0;
+  float: right;
+  font-size: 0.7rem;
+  height: 100%;
+  text-indent: 0.5rem;
+  width: 87.5%;
+  outline: medium none;
+  border: 0 none;
+}
+.page-current>.contain>ul>li>a.a1{
+  background-color: #087bbc;
+  border-radius: 3px;
+  color: #ffffff;
+  display: block;
+  font-size: 0.7rem;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  text-align: center;
+  width: 100%;
+}
+.page-current>.contain>ul>li>a.a2{
+  color: #999999;
+  display: block;
+  font-size: 0.7rem;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  text-align: center;
+  width: 100%;
+}
+.page-current>.contain>ul>img{
+  border-radius: 3px;
+  display: block;
+  font-size: 0.7rem;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  position: absolute;
+  right: 10%;
+  text-align: center;
+  width: 30%;
+}
+.page-current>.contain>ul>input{
+  background-color: #087bbc;
+  border-radius: 3px;
+  color: #ffffff;
+  display: block;
+  font-size: 0.7rem;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  position: absolute;
+  right: 10%;
+  text-align: center;
+  width: 30%;
+  border: 0 none;
+}

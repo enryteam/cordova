@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>缓冲页</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta content="telephone=no" name="format-detection">
+<link rel="stylesheet" href="css/sm.min.css">
+<link rel="stylesheet" href="css/login.css">
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/init.js"></script>
+<script>
+$.config = {
+    // 路由功能开关过滤器，返回 false 表示当前点击链接不使用路由
+    routerFilter: function($link) {
+        // 某个区域的 a 链接不想使用路由功能
+        if ($link.is('.disable-router a')) {
+            return false;
+        }
+        return true;
+    }
+};
+</script>
+</head>
+<body>
+    <div style="width:100%;height:100%;background-image:url('img/wel.png');background-size:100% 100%;"></div>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/sm.js"></script>
+<script type="text/javascript" src="js/sm-extend.js"></script>
+<script type="text/javascript">
+    shayjPush.listen();
+    setTimeout(function(){window.location.href = "index.html";},1000);
+</script>
+</body>
+</html>

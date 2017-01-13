@@ -1,0 +1,70 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cn.jpush.phonegap.JPushPlugin": {
+            "API_KEY": "ef807f7924afe4b2ebfeab1f",
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "cordova-plugin-crosswalk-webview": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "com.dawsonloudon.videoplayer": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "cordova-plugin-fileopener": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "cordova-plugin-file-opener2": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "cordova-plugin-appavailability": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        },
+        "at.modalog.cordova.plugin.cache": {
+            "PACKAGE_NAME": "cn.enry.yxx"
+        }
+    },
+    "dependent_plugins": {}
+}

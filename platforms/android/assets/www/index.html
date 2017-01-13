@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>首页</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta content="telephone=no" name="format-detection">
+<link rel="stylesheet" href="css/font.css">
+<link rel="stylesheet" href="css/sm.min.css">
+<link rel="stylesheet" href="css/sm-extend.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type='text/javascript' src='js/swiper.min.js' charset='utf-8'></script>
+  <script type="text/javascript" src="js/init.js"></script>
+<script>
+$.config = {
+    // 路由功能开关过滤器，返回 false 表示当前点击链接不使用路由
+    routerFilter: function($link) {
+        // 某个区域的 a 链接不想使用路由功能
+        if ($link.is('.disable-router a')) {
+            return false;
+        }
+        return true;
+    }
+};
+</script>
+</head>
+<body id="index_body">
+    <div class="page-group">
+        <!-- 下部导航 -->
+        <nav class="bar bar-tab">
+            <a class="tab-item active no-transition" href="#routers-index-1" onclick="javascript:index_red();updata_check();">
+                <span class="icon icon-home"></span>
+                <span class="tab-label">首页</span>
+            </a>
+            <a class="tab-item no-transition" href="#routers-index-2" onclick="javascript:kecheng_list_shuaxin();">
+                <span class="icon icon-menu"></span>
+                <span class="tab-label">课程</span>
+            </a>
+            <a class="tab-item no-transition" href="#routers-index-3">
+                <span class="icon icon-app"></span>
+                <span class="tab-label">模式</span>
+            </a>
+            <a class="tab-item no-transition" href="#routers-index-4" onclick="javascript:coll_and_down();">
+                <span class="icon icon-me"></span>
+                <span class="tab-label">我的</span>
+            </a>
+        </nav>
+
+        <!-- 首页 -->
+        <div id="routers-index-1" class="page page-current">
+            <header class="bar bar-nav shay_bar_head">
+                <h1 class="title"><img src="img/login_logo.png" style="height:1.5rem;vertical-align:middle;margin-right:0.4rem;position:relative;bottom:0.1rem" />运管在线学习</h1>
+            </header>
+
+            <div class="content pull-to-refresh-content pull-to-refresh-content-index">
+                <div class="pull-to-refresh-layer">
+                    <div class="preloader"></div>
+                    <div class="pull-to-refresh-arrow"></div>
+                </div>
+                <!-- <div class="swiper-container" style="padding-bottom:10px;" data-pagination='.swiper-pagination' data-autoplay="5000"> -->
+                <div class="swiper-container" style="padding-bottom:10px;">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><div class="row"><a href="#index_banner" class="no-transition"><img class="col-100" src="img/banner.png" /></a></div></div>
+                        <div class="swiper-slide"><div class="row"><a href="#index_banner" class="no-transition"><img class="col-100" src="img/banner.png" /></a></div></div>
+                        <div class="swiper-slide"><div class="row"><a href="#index_banner" class="no-transition"><img class="col-100" src="img/banner.png" /></a></div></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="row index2">
+                    <a class="col-50 kaoshi no-transition" href="#routers-index-3">
+                        在线考试
+                    </a>
+                    <i class="i1" id="weikaoshi"></i>
+                    <a class="col-50 xuexi no-transition" href="#routers-index-2">
+                        课程学习
+                    </a>
+                    <i class="i2" id="weikecheng"></i>
+                    <a class="col-50 diaocha no-transition" href="#index_diaocha">
+                        调查问卷
+                    </a>
+                    <i class="i3" id="weidiaocha"></i>
+                    <a class="col-50 beiwang no-transition" href="#index_banner">
+                        公告通知
+                    </a>
+                    <i class="i4" id="weitongzhi"></i>
+                    <a class="col-50 zaixian no-transition" href="#index_zaixian">
+                        在线交流
+                    </a>
+                    <a class="col-50 chengji no-transition" href="#routers-index-4-5" onclick="javascript:jin_chengji();">
+                        我的成绩
+                    </a>
+                    <a class="col-50 shoucang no-transition" href="#routers-index-4-3" onclick="javascript:jin_shoucang();">
+                        我的收藏
+                    </a>
+                    <a class="col-50 xiazai no-transition" href="#routers-index-4-4" onclick="javascript:jin_xiazai();">
+                        我的下载
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 课程 -->
+        <div id="routers-index-2" class="page">
+            <header class="bar bar-nav shay_bar_head">
+                <h1 class="title" id="shaixuan_title">全部</h1>
+            </header>
+
+            <div class="content">
+                <div class="row index2-1" id="kecheng_list">
+                    <!-- <div class="col-33 active">全<em></em>部</div>
+                    <div class="col-33">客运管理</div>
+                    <div class="col-33">货运管理</div>
+                    <div class="col-33">维修管理</div>
+                    <div class="col-33">驾培管理</div>
+                    <div class="col-33">出租管理</div>
+                    <div class="col-33">法规稽查</div>
+                    <div class="col-33">党的建设</div>
+                    <div class="col-33">安全监管</div> -->
+                </div>
+
+                <div class="content-block">
+                    <div class="buttons-row">
+                        <a href="#index2_tab1" class="tab-link active button" id="kecheng_choose_1">综合排序</a>
+                        <a href="#index2_tab2" class="tab-link button" id="kecheng_choose_2">人气排序</a>
+                        <a href="#index2_tab3" class="tab-link button" id="kecheng_choose_3">下载量排序</a>
+                    </div>
+                </div>
+                <div class="tabs">
+                    <div id="index2_tab1" class="tab active">
+                        <ul class="index4" id="kecheng_list1">
+                            <!-- <a href="#page_index_del" class="no-transition">
+                                <img src="img/index1.png" alt="" />
+                                <div>
+                                    <h1>客运管理培训课程</h1>
+                                    <h3><img src="img/us.png" alt="" />已有<i>3984</i>人下载</h3>
+                                </div>
+                                <h1></h1>
+                            </a> -->
+                        </ul>
+                    </div>
+                    <div id="index2_tab2" class="tab">
+                        <ul class="index4" id="kecheng_list2">
+                            <!-- <a href="#page_index_del" class="no-transition">
+                                <img src="img/index1.png" alt="" />
+                                <div>
+                                    <h1>客运管理培训课程</h1>
+                                    <h2>挂件快递就看见可怜噶几节课搁我，你，你个哦房间爱流量卡都能干，那个为了看个挂件快递就看见可怜噶几节课搁我，你，你个哦房间爱流量卡都能干，那个为了看个</h2>
+                                    <h3><img src="img/us.png" alt="" />已有<i>3984</i>人下载</h3>
+                                </div>
+                                <h1></h1>
+                            </a> -->
+                        </ul>
+                    </div>
+                    <div id="index2_tab3" class="tab">
+                        <ul class="index4" id="kecheng_list3">
+                            <!-- <a href="#page_index_del" class="no-transition">
+                                <img src="img/index1.png" alt="" />
+                                <div>
+                                    <h1>客运管理培训课程</h1>
+                                    <h2>挂件快递就看见可怜噶几节课搁我，你，你个哦房间爱流量卡都能干，那个为了看个挂件快递就看见可怜噶几节课搁我，你，你个哦房间爱流量卡都能干，那个为了看个</h2>
+                                    <h3><img src="img/us.png" alt="" />已有<i>3984</i>人下载</h3>
+                                </div>
+                                <h1></h1>
+                            </a> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 模式 -->
+        <div id="routers-index-3" class="page">
+            <header class="bar bar-nav shay_bar_head">
+                <h1 class="title">模式</h1>
+            </header>
+
+            <div class="content">
+                <ul class="moshi" id="gezhong_moshi">
+                    <li>
+                        <a href="#routers-index-3-1" class="no-transition" onclick="javascript:moshi_detail('练习','练习模式');">
+                            <img src="img/ms_ico1.png" alt="" />
+                            练习模式
+                        </a>
+                    </li>
+                    <!-- <li>
+                        <a href="#routers-index-3-1" class="no-transition" onclick="javascript:moshi_detail('闯关','闯关模式');">
+                            <img src="img/ms_ico2.png" alt="" />
+                            闯关模式
+                        </a>
+                    </li> -->
+                    <li>
+                        <a href="#routers-index-3-1" class="no-transition" onclick="javascript:moshi_detail('考试','考试模式');">
+                            <img src="img/ms_ico3.png" alt="" />
+                            考试模式
+                        </a>
+                    </li>
+                </ul>
+                <ul class="moshi">
+                    <li>
+                        <a href="#routers-index-3-4" class="no-transition">
+                            <img src="img/ms_ico4.png" alt="" />
+                            考试排行榜
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 我的 -->
+        <div id="routers-index-4" class="page" style="overflow:auto;">
+            <div class="my">
+                <h1><a href="#routers-index-4-1" class="no-transition"><img src="img/index1.png" id="my_touxiang" /></a></h1>
+                <h2 id="my_name"></h2>
+                <div class="row no-gutter">
+                    <a class="col-50 no-transition" style="border-right:1px solid #fcd5a1;" href="#routers-index-4-3" onclick="javascript:jin_shoucang();"><i id="my_collect_num"></i></br>收藏</a>
+                    <a class="col-50 no-transition" href="#routers-index-4-4" onclick="javascript:jin_xiazai();"><i id="my_download_num"></i></br>下载</a>
+                </div>
+            </div>
+            <div class="list-block" style="margin-bottom:2.5rem;">
+                <ul>
+                    <a class="item-content item-link no-transition" href="#routers-index-4-1">
+                        <div class="item-media"><img src="img/my_ico1.png"/></div>
+                        <div class="item-inner">
+                            <div class="item-title">个人资料</div>
+                        </div>
+                    </a>
+                    <a class="item-content item-link no-transition" href="#routers-index-4-2">
+                        <div class="item-media"><img src="img/my_ico2.png"/></div>
+                        <div class="item-inner">
+                            <div class="item-title">备忘录</div>
+                        </div>
+                    </a>
+                    <li class="guodu"></li>
+                    <a class="item-content item-link no-transition" href="#routers-index-4-3" onclick="javascript:jin_shoucang();">
+                        <div class="item-media"><img src="img/my_ico3.png"/></div>
+                        <div class="item-inner">
+                            <div class="item-title">我的收藏</div>
+                        </div>
+                    </a>
+                    <a class="item-content item-link no-transition" href="#routers-index-4-4" onclick="javascript:jin_xiazai();">
+                        <div class="item-media"><img src="img/my_ico4.png"/></div>
+                        <div class="item-inner">
+                            <div class="item-title">我的下载</div>
+                        </div>
+                    </a>
+                    <a class="item-content item-link no-transition" href="#routers-index-4-5" onclick="javascript:jin_chengji();">
+                        <div class="item-media"><img src="img/my_ico5.png"/></div>
+                        <div class="item-inner">
+                            <div class="item-title">我的成绩</div>
+                        </div>
+                    </a>
+                    <li class="guodu"></li>
+                    <div class="item-content item-link no-transition">
+                        <div class="item-media"><img src="img/my_ico101.png"/></div>
+                        <div class="item-inner" style="background-image:url('');margin-left:0;padding-right:.5rem;">
+                            <div class="item-title" id="qiehuan_zi">切换内网</div>
+                            <div class="item-input" style="text-align:right;width:70%;">
+                              <label class="label-switch">
+                                <input type="checkbox">
+                                <div class="checkbox" id="qiehuan_wang"></div>
+                              </label>
+                            </div>
+                        </div>
+                    </div>
+                    <li class="guodu"></li>
+                    <a class="item-content item-link no-transition" href="#" onclick="javascript:shayCache();">
+                        <div class="item-media"><img src="img/my_ico7.png"/></div>
+                        <div class="item-inner">
+                            <div class="item-title">清除缓存</div>
+                        </div>
+                    </a>
+                    <a class="item-content item-link no-transition" href="#" id="logout">
+                        <div class="item-media"><img src="img/my_ico6.png"/></div>
+                        <div class="item-inner">
+                            <div class="item-title">退出登录</div>
+                        </div>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课程详情页 -->
+    <div class="page" style="z-index:10000" id="page_index_del">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="icon icon-left pull-left back" href="#" style="color:#ffffff;"></a>
+            <h1 class="title" id="cstitle" style="padding:0 2rem;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;"></h1>
+        </header>
+        <nav class="bar bar-tab" id="xiazai">下载课程</nav>
+        <div class="content" style="padding-bottom:0;">
+            <div class="suolve" id="cslink">
+                <img src="img/play.png" alt="" />
+            </div>
+            <div class="jieshao">
+                <h1 id="cstitle1"><div><a class="icon icon-star pull-left open-panel"></a></br></div></h1>
+                <h2 id="csdescribe"></h2>
+                <div style="clear:both;"></div>
+            </div>
+            <h1 class="pingjia"><i></i>课程评价<a href="javascript:;" id="pinglun">发表评价</a></h1>
+
+            <ul class="pingjia_list" id="comments">
+                <!-- <li>
+                    <div class="left"><img src="img/index1.png" alt="" /></div>
+                    <div class="right">
+                        <h1>13858585514 <i>2016-08-16 17:58</i></h1>
+                        <h2>企业文化真的很不错，给人一种积极向上的精神头。企业文化真的很不错，给人一种积极向上的精神头。企业文化真的很不错，给人一种积极向上的精神头。企业文化真的很不错，给人一种积极向上的精神头。企业文化真的很不错，给人一种积极向上的精神头。</h2>
+                    </div>
+                    <h1></h1>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+<!-- ######################################################################################################################### -->
+    <!-- 答题模式 --><!-- 答题模式 --><!-- 答题模式 --><!-- 答题模式 --><!-- 答题模式 --><!-- 答题模式 -->
+    <div id="routers-index-3-1" class="page moshi_list" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left no-transition" href="#routers-index-3">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title" id="moshi_title"></h1>
+        </header>
+
+        <div class="content pull-to-refresh-content pull-to-refresh-content-moshiti" style="padding-bottom:0;">
+            <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+            </div>
+            <ul class="lianxi" id="moshi_list_neirong">
+                <!-- <li><a href="#routers-index-3-1-1" class="no-transition">试题一<i>哈哈哈</i></a></li> -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- 答题模式~试题介绍（开始答题） -->
+    <div id="routers-index-3-1-1" class="page moshi_shiti" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left back" href="#">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title" id="start_moshi_title"></h1>
+        </header>
+
+        <div class="content lianxi">
+            <h1 id="start_moshi_name"><i></i></h1>
+            <h3 id="start_moshi_time_jishi"></h3>
+            <h3 id="start_moshi_time"></h3>
+            <h2 id="start_moshi_content"></h2>
+            <a href="#routers-index-3-1-1-1" id="start_moshi_anniu" class="no-transition"></a>
+        </div>
+    </div>
+
+    <!-- 开始答题~题库模板 -->
+    <div id="routers-index-3-1-1-1"  class="page lianxiti" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left" href="#" id="tiku_back">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title" id="tiku_title"></h1>
+            <a class="pull-right" href="#">
+                <span class="icon" id="jiaojuan">交卷</span>
+            </a>
+        </header>
+
+        <nav class="bar bar-tab">
+            <a class="pull-left" href="#" onclick="javascript:$.toast('已经是第一题了！');">
+                <span class="icon icon-left"></span>上一题
+            </a>
+            <h1 class="title" id="tiku_page"></h1>
+            <a class="pull-right no-transition" id="tiku_next">
+                下一题<span class="icon icon-right"></span>
+            </a>
+        </nav>
+
+        <div class="content">
+            <h1 id="tiku_tixing"><span></span></h1>
+            <!-- <h1><span>判断题</span><i><span class="icon icon-clock"></span>用时：<strong>00:59:14</strong><a href="#">暂停</a></i></h1> -->
+            <h2 id="tiku_name"></h2>
+            <ul id="tiku_list">
+                <!-- <li>
+                    <label class="label-checkbox item-content">
+                        <input type="radio" name="my-radio">
+                        <div class="item-media"><i class="icon icon-form-checkbox"></i>A、对</div>
+                    </label>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- 暂停遮罩 -->
+    <div id="zanting_zhezhao" style="width:100%;height:100%;z-index:9999999;background:rgba(0, 0, 0, 0.6) none repeat scroll 0 0;position:absolute;text-align:center;color:#333333;padding-top:60%;display:none;" onclick="javascript:zhezhaodianji(this);">
+        <div style="width:12rem;height:6rem;background-color:#ffffff;margin:0 auto;border-radius:5px;position:relative">
+            <span style="padding:1rem;display:block;">您已暂停考试</span>
+            <a href="javascript:;" style="border-bottom-left-radius:5px;border-bottom-right-radius:5px;color:#ffffff;position:absolute;bottom:0;width:100%;height:2rem;line-height:2rem;background-color:#087bbc;display:block;">继续考试</a>
+        </div>
+    </div>
+    <!-- 答题模式结束 --><!-- 答题模式结束 --><!-- 答题模式结束 --><!-- 答题模式结束 --><!-- 答题模式结束 -->
+
+
+<!-- ######################################################################################################################### -->
+    <!-- 排行榜 --><!-- 排行榜 --><!-- 排行榜 --><!-- 排行榜 --><!-- 排行榜 --><!-- 排行榜 --><!-- 排行榜 -->
+    <div id="routers-index-3-4" class="page" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left back" href="#">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title">考试排行榜</h1>
+        </header>
+        <div class="content pull-to-refresh-content pull-to-refresh-content-paihang" style="padding-bottom:0;">
+            <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+            </div>
+            <input type="text" id='picker_paihang' value="" placeholder="点击筛选考试排行"/>
+            <h1 id="paihang_zongfen"></h1>
+            <div style="position:relative;" id="zanwupaihang">
+                <div class="no1">
+                    <h1 class="no1_defen" id="lianxi_no1_defen"></h1>
+                </div>
+                <h1 class="no1_head_img"><img id="lianxi_no1_touxiang" src="img/user.png" /></h1>
+                <h1 class="no1_name" id="lianxi_no1_name"></h1>
+                <ul class="no_list" id="lianxi_list">
+                    <!-- <li><i>NO. 2</i><img src="img/index1.png" />小小鱼<b>1800</b></li> -->
+                </ul>
+            </div>
+            <h1 style="text-align:center;font-size:0.8rem;padding:1rem;display:none;" id="zanwupaihang_1">暂无排行</h1>
+        </div>
+    </div>
+
+
+    <!-- 个人资料 --><!-- 个人资料 -->
+    <div id="routers-index-4-1" class="page" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left back" href="#" onclick="javascript:my_init();">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title">个人资料</h1>
+        </header>
+        <div class="content">
+            <div class="top">
+                <ul>
+                    <li style="width:100%;height:5.9rem; line-height:5.9rem;">
+                        <a href="javascript:;">
+                            <span class="fl"><img src="img/myda_ico1.png">头像</span>
+                            <span class="fr"><img src="img/index1.png" id="my_data_touxiang" style="border-radius:50%;width:3rem; height:3rem; vertical-align:middle;margin-right:0.4rem;"><i class="icon icon-right"></i></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <span class="fl"><img src="img/myda_ico2.png">真实姓名</span>
+                            <span class="fr"><input id="my_data_name" type="text" style="border:0;text-align:right;" readonly="" value=""></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <span class="fl"><img src="img/myda_ico3.png">手机号</span>
+                            <span class="fr"><input id="my_data_phone" type="text" style="border:0;text-align:right;" readonly="" value=""></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <span class="fl"><img src="img/myda_ico4.png">邮箱</span>
+                            <span class="fr"><input id="my_data_email" type="text" style="border:0;text-align:right;" placeholder="填写您的邮箱"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <span class="fl"><img src="img/myda_ico5.png">微信</span>
+                            <span class="fr"><input id="my_data_wechat" type="text" style="border:0;text-align:right;" placeholder="填写您的微信号"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <span class="fl"><img src="img/myda_ico6.png">QQ</span>
+                            <span class="fr"><input id="my_data_qq" type="text" style="border:0;text-align:right;" placeholder="填写您的QQ号"></span>
+                        </a>
+                    </li>
+                </ul>
+                <a href="#" id="my_data_baocun">保存</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 备忘录 --><!-- 备忘录 -->
+    <div id="routers-index-4-2" class="page" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left back" href="#">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title">备忘录</h1>
+            <a onclick="javascript:clear_beiwang();" class="pull-right icon" style="color:#fff;font-size:0.75rem;" href="#">
+                清空
+            </a>
+        </header>
+        <nav class="bar bar-tab">
+            <a href="#routers-index-4-2-2" class="no-transition"><img src="img/edit.png" alt="" /></a>
+        </nav>
+        <div class="content pull-to-refresh-content pull-to-refresh-content-beiwang">
+            <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+            </div>
+            <ul id="memorandumlist">
+                <!-- <a href="#routers-index-4-2-1" class="no-transition">
+                    <h1>员工技能测试考试</h1>
+                    <h2>2016-09-18</h2>
+                </a> -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- 备忘录详情页（编辑备忘录） -->
+    <div id="routers-index-4-2-1" class="page" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left back" href="#">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title">备忘录</h1>
+        </header>
+        <div class="content">
+            <div class="inp1">
+                <input type="text" name="name" value="" id="memdetitle">
+            </div>
+            <div class="inp2" contenteditable="true" id="memdecontent"></div>
+            <h1 class="inp3"><svg width="0.8rem" height="0.8rem" viewBox="0 0 200 200" version="1.1" style="width:0.8rem;height:0.8rem;"><g class="transform-group"><g transform="scale(0.1953125, 0.1953125)"><path d="M512.032 24.928c-271.936 0-493.12 221.184-493.12 493.088 0 271.904 221.184 493.024 493.12 493.024 271.872 0 493.056-221.12 493.056-493.024C1005.088 246.112 783.904 24.928 512.032 24.928zM512.032 957.056c-242.144 0-439.136-197.056-439.136-439.104 0-242.08 196.96-439.104 439.136-439.104 242.08 0 439.104 196.928 439.104 439.104C951.136 760.064 754.112 957.056 512.032 957.056zM522.752 196.544 468.768 196.544 468.768 571.52 473.44 571.52 789.184 699.584 809.472 649.536 522.752 533.312Z" fill="#999999"></path></g></g></svg><input type="text" id='datetime-picker1' value="2016-09-15 08:00"/><span class="icon icon-caret first"></span></h1>
+            <h1 class="inp3 create-actions create-actions1"><svg width="0.8rem" height="0.8rem" viewBox="0 0 200 200" version="1.1" style="width:0.8rem;height:0.8rem;"><g class="transform-group"><g transform="scale(0.1953125, 0.1953125)"><path d="M803.669333 685.738667 803.669333 411.272533c0-142.830933-103.3728-261.307733-239.274667-285.405867L564.394667 104.072533c0-18.8416-15.291733-34.133333-34.116267-34.133333l-34.133333 0c-18.858667 0-34.133333 15.291733-34.133333 34.133333l0 21.896533c-135.6288 24.3712-238.592 142.6944-238.592 285.303467L223.419733 685.738667l-119.808 96.9728 0 55.330133L922.794667 838.0416l0-55.330133L803.669333 685.738667zM888.661333 803.908267 137.745067 803.908267l0-4.898133 107.127467-86.7328 12.663467-10.24L257.536 685.738667 257.536 411.272533c0-141.1584 114.8416-256 256-256 141.124267 0 255.982933 114.8416 255.982933 256L769.518933 685.738667l0 16.2304 12.561067 10.24 106.564267 86.7328L888.644267 803.908267zM513.1776 957.2352c47.1552 0 85.418667-38.161067 85.418667-85.333333L427.810133 871.901867C427.844267 919.074133 466.090667 957.2352 513.1776 957.2352z" fill="#999999"></path></g></g></svg><i id="tixingfangshi1">需要提醒（以短信方式）</i><span class="icon icon-caret"></span></h1>
+            <a href="#" id="memdebaocun">保&nbsp;存</a>
+        </div>
+    </div>
+
+    <!-- 新增备忘录 --><!-- 新增备忘录 -->
+    <div id="routers-index-4-2-2" class="page" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left back" href="#">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title">备忘录</h1>
+        </header>
+        <div class="content">
+            <div class="inp1">
+                <input type="text" name="name" placeholder="请输入标题" id="memtitle">
+            </div>
+            <div class="inp4">
+                <textarea placeholder="请输入内容" id="memcontent"></textarea>
+            </div>
+            <h1 class="inp3"><svg width="0.8rem" height="0.8rem" viewBox="0 0 200 200" version="1.1" style="width:0.8rem;height:0.8rem;"><g class="transform-group"><g transform="scale(0.1953125, 0.1953125)"><path d="M512.032 24.928c-271.936 0-493.12 221.184-493.12 493.088 0 271.904 221.184 493.024 493.12 493.024 271.872 0 493.056-221.12 493.056-493.024C1005.088 246.112 783.904 24.928 512.032 24.928zM512.032 957.056c-242.144 0-439.136-197.056-439.136-439.104 0-242.08 196.96-439.104 439.136-439.104 242.08 0 439.104 196.928 439.104 439.104C951.136 760.064 754.112 957.056 512.032 957.056zM522.752 196.544 468.768 196.544 468.768 571.52 473.44 571.52 789.184 699.584 809.472 649.536 522.752 533.312Z" fill="#999999"></path></g></g></svg><input type="text" id='datetime-picker' value="2016-09-15 08:00"/><span class="icon icon-caret first"></span></h1>
+            <h1 class="inp3 create-actions create-actions2"><svg width="0.8rem" height="0.8rem" viewBox="0 0 200 200" version="1.1" style="width:0.8rem;height:0.8rem;"><g class="transform-group"><g transform="scale(0.1953125, 0.1953125)"><path d="M803.669333 685.738667 803.669333 411.272533c0-142.830933-103.3728-261.307733-239.274667-285.405867L564.394667 104.072533c0-18.8416-15.291733-34.133333-34.116267-34.133333l-34.133333 0c-18.858667 0-34.133333 15.291733-34.133333 34.133333l0 21.896533c-135.6288 24.3712-238.592 142.6944-238.592 285.303467L223.419733 685.738667l-119.808 96.9728 0 55.330133L922.794667 838.0416l0-55.330133L803.669333 685.738667zM888.661333 803.908267 137.745067 803.908267l0-4.898133 107.127467-86.7328 12.663467-10.24L257.536 685.738667 257.536 411.272533c0-141.1584 114.8416-256 256-256 141.124267 0 255.982933 114.8416 255.982933 256L769.518933 685.738667l0 16.2304 12.561067 10.24 106.564267 86.7328L888.644267 803.908267zM513.1776 957.2352c47.1552 0 85.418667-38.161067 85.418667-85.333333L427.810133 871.901867C427.844267 919.074133 466.090667 957.2352 513.1776 957.2352z" fill="#999999"></path></g></g></svg><i id="tixingfangshi">需要提醒（以短信方式）</i><span class="icon icon-caret"></span></h1>
+            <a href="#" id="membaocun">保&nbsp;存</a>
+        </div>
+    </div>
+
+    <!-- 我的收藏 --><!-- 我的收藏 -->
+    <div id="routers-index-4-3" class="page" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left back" onclick="javascript:coll_and_down();">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title">我的收藏</h1>
+            <a onclick="javascript:clear_shoucang();" class="pull-right icon" style="color:#fff;font-size:0.75rem;" href="#">
+                清空
+            </a>
+        </header>
+
+        <div class="content pull-to-refresh-content pull-to-refresh-content-collect" style="padding-bottom:0;">
+            <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+            </div>
+            <ul id="my_collect">
+                <!-- <a href="#page_index_del" class="no-transition">
+                    <img src="img/index1.png" alt="" />
+                    <div>
+                        <h1>客运管理培训课程</h1>
+                        <h2>挂件快递就看见可怜噶几节课搁我，你，你个哦房间爱流量卡都能干，那个为了看个挂件快递就看见可怜噶几节课搁我，你，你个哦房间爱流量卡都能干，那个为了看个</h2>
+                        <h3><img src="img/us.png" alt="" />已有<i>3984</i>人下载</h3>
+                    </div>
+                    <h1></h1>
+                </a> -->
+                <!-- <h1 style="text-align:center;font-size:0.8rem;padding:1rem;">暂无收藏</h1> -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- 我的下载 --><!-- 我的下载 -->
+    <div id="routers-index-4-4" class="page" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left back" onclick="javascript:coll_and_down();">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title">我的下载</h1>
+            <a onclick="javascript:clear_xiazai();" class="pull-right icon" style="color:#fff;font-size:0.75rem;" href="#">
+                清空
+            </a>
+        </header>
+
+        <div class="content pull-to-refresh-content pull-to-refresh-content-download" style="padding-bottom:0;">
+            <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+            </div>
+            <ul id="my_download">
+                <!-- <a href="#">
+                    <img src="img/index1.png" alt="" />
+                    <div>
+                        <h1>客运管理培训课程</h1>
+                        <h2>挂件快递就看见可怜噶几节课搁我，你，你个哦房间爱流量卡都能干，那个为了看个挂件快递就看见可怜噶几节课搁我，你，你个哦房间爱流量卡都能干，那个为了看个</h2>
+                        <h3><b>播放</b></h3>
+                    </div>
+                    <h1></h1>
+                </a> -->
+                <!-- <h1 style="text-align:center;font-size:0.8rem;padding:1rem;">暂无下载</h1> -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- 我的成绩 --><!-- 我的成绩 -->
+    <div id="routers-index-4-5" class="page" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left back">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title">我的成绩</h1>
+            <a onclick="javascript:clear_chengji();" class="pull-right icon" style="color:#fff;font-size:0.75rem;" href="#">
+                清空
+            </a>
+        </header>
+
+        <div class="content pull-to-refresh-content pull-to-refresh-content-grades" style="padding-bottom:0;">
+            <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+            </div>
+            <div class="list-block media-list">
+                <ul id="my_grades">
+                    <!-- <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">员工技能测试考试员工技能测试考试员工技能测试考试员工技能测试考试</div>
+                                </div>
+                                <div class="item-subtitle">2016-05-19</div>
+                            </div>
+                            <div class="right">100分</div>
+                        </div>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+<!-- ######################################################################################################################### -->
+
+    <!-- 调查问卷 --><!-- 调查问卷 -->
+    <div id="index_diaocha" class="page" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left back">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title">问卷调查</h1>
+        </header>
+
+        <div class="content pull-to-refresh-content pull-to-refresh-content-wenjuan" style="padding-bottom:0;">
+            <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+            </div>
+            <img src="img/diaocha_bg.png" alt="" />
+            <ul id="wenjuan_list">
+                <!-- <li>
+                    <h1>电信客服积分感知调查方案<i>进行中</i></h1>
+                    <h2>截止日期 2016-08-15 15：24<a href="#index_diaocha_detail" class="no-transition">参与调查</a></h2>
+                </li>
+                <li>
+                    <h1>电信客服积分感知调查方案<i class="active">已结束</i></h1>
+                    <h2>截止日期 2016-08-15 15：24<a href="#" class="active" class="no-transition">参与调查</a></h2>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- 问卷调查详情页 --><!-- 问卷调查详情页 -->
+    <div id="index_diaocha_detail" class="page" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left back">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title">问卷调查</h1>
+        </header>
+
+        <nav class="bar bar-tab">
+            <a href="#" id="wenjuan_detail_sub">提交</a>
+        </nav>
+
+        <div class="content" style="padding-bottom:1rem;">
+            <h1 id="wenjuan_detail_name"></h1>
+            <h2 id="wenjuan_detail_time"></h2>
+            <h3>尊敬的用户，您好！</h3>
+            <div class="list" id="wenjuan_detail_question">
+                <!-- <h2>1、您反映宽带出现故障后，认为目前故障修复是否及时</h2>
+                <ul>
+                    <li>
+                        <label class="label-checkbox item-content">
+                            <input type="radio" name="my-radio1">
+                            <div class="item-media"><i class="icon icon-form-checkbox"></i>a、是</div>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="label-checkbox item-content">
+                            <input type="radio" name="my-radio1">
+                            <div class="item-media"><i class="icon icon-form-checkbox"></i>b、否</div>
+                        </label>
+                    </li>
+                </ul> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 在线交流(导师列表) --><!-- 在线交流(导师列表) -->
+    <div id="index_zaixian" class="page" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left back">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title">业务导师</h1>
+            <!-- 我是导师才会显示 -->
+            <a class="pull-right no-transition" href="#index_zaixian_daoshi" id="istea" style="display:none;">
+                <span class="icon"><svg version="1.1" width="1.1rem" height="1.1rem" viewBox="0 0 200 200" style="margin-top:0.1rem;width:1.1rem;height:1.1rem;"><g class="transform-group"><g transform="scale(0.1953125, 0.1953125)"><path d="M846.627778 808.269657l-341.226568 0.607844-217.86189 145.241942-37.165458-145.241942-74.652234-0.607844c-61.748343 0-111.817692-69.506027-111.817692-131.263579l0-495.2802c0-61.757552 50.069349-111.817692 111.817692-111.817692l670.90615 0c61.757552 0 111.817692 50.060139 111.817692 111.817692l0 514.725064C958.444447 758.210541 908.384307 808.269657 846.627778 808.269657zM919.133116 181.573405c0-40.203654-32.721239-72.91466-72.924893-72.91466L175.312306 108.658745c-40.223097 0-72.924893 32.712029-72.924893 72.91466l0 495.288386c0 40.194444 32.701796 92.371804 73.238025 92.371804l106.21509 0.873903 31.505551 117.201306 179.12054-117.447922 353.741603-0.626263c40.203654 0 72.924893-32.721239 72.924893-72.924893L919.133116 181.573405zM705.638697 497.732042c-32.225959 0-58.33971-26.112728-58.33971-58.33971 0-32.217772 26.113751-58.33971 58.33971-58.33971 32.228005 0 58.340733 26.120914 58.340733 58.33971C763.97943 471.619314 737.866702 497.732042 705.638697 497.732042zM705.638697 419.946444c-10.729365 0-19.446911 8.707312-19.446911 19.445888s8.717546 19.445888 19.446911 19.445888c10.730389 0 19.446911-8.707312 19.446911-19.445888S716.370109 419.946444 705.638697 419.946444zM511.17368 497.732042c-32.226982 0-58.33971-26.112728-58.33971-58.33971 0-32.217772 26.112728-58.33971 58.33971-58.33971s58.33971 26.120914 58.33971 58.33971C569.51339 471.619314 543.400662 497.732042 511.17368 497.732042zM511.17368 419.946444c-10.729365 0-19.446911 8.707312-19.446911 19.445888s8.717546 19.445888 19.446911 19.445888 19.446911-8.707312 19.446911-19.445888S521.904069 419.946444 511.17368 419.946444zM316.708664 497.732042c-32.226982 0-58.33971-26.112728-58.33971-58.33971 0-32.217772 26.112728-58.33971 58.33971-58.33971 32.228005 0 58.33971 26.120914 58.33971 58.33971C375.04735 471.619314 348.935646 497.732042 316.708664 497.732042zM316.708664 419.946444c-10.729365 0-19.445888 8.707312-19.445888 19.445888s8.716522 19.445888 19.445888 19.445888 19.446911-8.707312 19.446911-19.445888S327.438029 419.946444 316.708664 419.946444z" fill="#ffffff"></path></g></g></svg></span>
+            </a>
+            <!-- 我是导师才会显示 -->
+        </header>
+
+        <div class="content pull-to-refresh-content pull-to-refresh-content-daoshi" style="padding-bottom:0;">
+            <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+            </div>
+            <ul id="daoshi_list">
+                <!-- <li>
+                    <img src="img/daoshi.png" alt="" />
+                    <div>
+                        <h1>杨广宇<a href="#index_zaixian_detail" class="no-transition">在线交流</a></h1>
+                        <h2>挂件快递就看见可怜噶几节课搁我挂件快递就看见可怜噶几节课搁我挂件快递就看见可怜噶几节课搁我挂件快递就看见可怜噶几节课搁我挂件快递就看见可怜噶几节课搁我</h2>
+                        <h3><img src="img/us.png" alt="" />已有3984人提问</h3>
+                    </div>
+                    <h1></h1>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- 在线交流（导师详情页） --><!-- 在线交流（导师详情页） -->
+    <div id="index_zaixian_detail" class="page" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left back">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title">业务导师</h1>
+        </header>
+
+        <div class="content" style="padding-bottom:0;">
+            <div class="top">
+                <img src="img/daoshi.png" id="chat_list_all_photo" />
+                <div>
+                    <h1 id="chat_list_all_username"></h1>
+                    <h2 id="chat_list_all_userdescribe"></h2>
+                    <h3><img src="img/us.png" alt="" />已有<b id="chat_list_all_quiz_num"></b>人提问</h3>
+                </div>
+                <h1></h1>
+            </div>
+            <div class="buttons-tab">
+                <a href="#index_zaixian_detail_tab1" class="tab-link active button" id="jiaoliu_all">所有交流</a>
+                <a href="#index_zaixian_detail_tab2" class="tab-link button" id="jiaoliu_my">我的交流</a>
+            </div>
+            <div class="tabs">
+                <div id="index_zaixian_detail_tab1" class="tab active" style="height:100%;">
+                    <div class="content" style="top:9.6rem;">
+                        <ul id="daoshi_detail_all">
+                            <!-- <li>
+                                <div class="left">
+                                    <img src="img/index1.png" alt="" />
+                                </div>
+                                <div class="right">
+                                    <h1>13369995878 <i>2016-08-15 08:42</i></h1>
+                                    <h2>市场营销都有什么技巧呢？</h2>
+                                    <h3><i>[杨广宇回复]:</i>市场营销是一种营销市场营销是一种营销市场营销是一种营销市场营销是一种营销市场营销是一种营销市场营销是一种营销。</h3>
+                                </div>
+                                <h1></h1>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+                <div id="index_zaixian_detail_tab2" class="tab">
+                    <nav class="bar bar-tab">
+                        <input type="text" placeholder="请输入您的提问" id="daoshi_detail_mychat_con"><a href="#" id="daoshi_detail_mychat">提问</a>
+                    </nav>
+                    <div class="content" style="top:9.6rem;">
+                        <ul id="daoshi_detail_my">
+                            <!-- <li>
+                                <div class="left">
+                                    <img src="img/index1.png" alt="" />
+                                </div>
+                                <div class="right">
+                                    <h1>13369995878 <i>2016-08-15 08:42</i></h1>
+                                    <h2>市场营销都有什么技巧呢？</h2>
+                                </div>
+                                <h1></h1>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 如果我是导师！！！ --><!-- 如果我是导师！！！ --><!-- 如果我是导师！！！ -->
+    <!-- 我是导师，我的留言列表 -->
+    <div id="index_zaixian_daoshi" class="page" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left back">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title">业务导师回复</h1>
+        </header>
+
+        <div class="content pull-to-refresh-content pull-to-refresh-content-imdaoshi" style="padding-bottom:0;">
+            <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+            </div>
+            <ul id="daoshi_imdaoshi">
+                <!-- <a href="#index_zaixian_daoshi_huifu" class="no-transition">
+                    <div class="left">
+                        <img src="img/index1.png" alt="" />
+                    </div>
+                    <div class="right">
+                        <h1>13369875456<i>2016-08-19 17:25</i></h1>
+                        <h2>达到健身房攻击力，发链接付款拉几个卡拉诶U盾几十块了敬爱是你的vans，买带你疯狂拉升更何况你烦什么，的女卡死的看了就不过考虑到是</h2>
+                        <h3><i>[我的回复]:</i>发的撒即可发送飞机卡上就卡死的健康法拉利是飞机快拉上房间看林俊杰</h3>
+                    </div>
+                    <h1></h1>
+                </a> -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- 我是导师，我的留言回复 -->
+    <div id="index_zaixian_daoshi_huifu" class="page" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left back">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title">交流回复</h1>
+        </header>
+
+        <div class="content" style="padding-bottom:0;">
+            <div>
+                <textarea placeholder="请输入您的回复信息..." id="imdaoshi_huifu_con"></textarea>
+            </div>
+            <a href="#" onclick="javascript:daoshi_detail_imtea_huifu();">回&nbsp;&nbsp;复</a>
+        </div>
+    </div>
+
+    <!-- banner公告列表页 -->
+    <div id="index_banner" class="page" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left back">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title">公告通知</h1>
+        </header>
+
+        <div class="content pull-to-refresh-content pull-to-refresh-content-banner" style="padding-bottom:0;">
+            <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+            </div>
+            <ul id="banner_list">
+                <!-- <a href="#index_banner_detail" class="no-transition">
+                    <h1>员工职业技能考试通知员工职业技能考试通知员工职业技能考试通知员工职业技能考试通知员工职业技能考试通知员工职业技能考试通知</h1>
+                    <h2>2016-09-18</h2>
+                </a> -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- banner公告详情页 -->
+    <div id="index_banner_detail" class="page" style="z-index:10000">
+        <header class="bar bar-nav shay_bar_head">
+            <a class="pull-left back">
+                <span class="icon icon-left" style="color:#fff;"></span>
+            </a>
+            <h1 class="title">公告通知</h1>
+        </header>
+
+        <div class="content" style="padding-bottom:0;">
+            <h1 id="contenttitle"></h1>
+            <h2 id="contentusername"></h2>
+            <h3 id="contenttext"></h3>
+            <h4><a href="#" id="content_tiaozhuan" class="no-transition">马上进入员工技能考试&nbsp;&gt;&nbsp;&gt;</a></h4>
+        </div>
+    </div>
+
+    <div class="popup popup-ppt">
+        <div class="content-block">
+            <!-- <p>About</p>
+            <p><a href="#" class="close-popup">Close popup</a></p>
+            <p>Lorem ipsum dolor ...</p> -->
+            <header class="bar bar-nav shay_bar_head">
+                <a class="pull-left close-popup">
+                    <span class="icon icon-left" style="color:#fff;"></span>
+                </a>
+                <h1 class="title">文件预览</h1>
+            </header>
+            <div class="content" style="padding-bottom:0;">
+                <h1 style="text-align:center;padding:2rem 0;"><img src="img/down1.png" style="width:7rem;height:7rem;" /></h1>
+                <a href="#" onclick="javascript:tishianzhuang();" style="display:block;width:90%;margin:0 auto 1.5rem;text-align:center;font-size:0.8rem;color:#fff;height:2rem;line-height:2rem;background-color:#087bbc;border-radius:4px;">安装其他应用打开此文件</a>
+                <h2 style="text-align:center;font-size:0.65rem;color:#999999;padding:0.3rem 0;">运管在线学习暂时不能打开该文件</h2>
+                <h2 style="text-align:center;font-size:0.65rem;color:#999999;padding:0.3rem 0;">你可以用其他应用打开</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup popup-doc">
+        <div class="content-block">
+            <!-- <p>About</p>
+            <p><a href="#" class="close-popup">Close popup</a></p>
+            <p>Lorem ipsum dolor ...</p> -->
+            <header class="bar bar-nav shay_bar_head">
+                <a class="pull-left close-popup">
+                    <span class="icon icon-left" style="color:#fff;"></span>
+                </a>
+                <h1 class="title">文件预览</h1>
+            </header>
+            <div class="content" style="padding-bottom:0;">
+                <h1 style="text-align:center;padding:2rem 0;"><img src="img/down2.png" style="width:7rem;height:7rem;" /></h1>
+                <a href="#" onclick="javascript:tishianzhuang();" style="display:block;width:90%;margin:0 auto 1.5rem;text-align:center;font-size:0.8rem;color:#fff;height:2rem;line-height:2rem;background-color:#087bbc;border-radius:4px;">安装其他应用打开此文件</a>
+                <h2 style="text-align:center;font-size:0.65rem;color:#999999;padding:0.3rem 0;">运管在线学习暂时不能打开该文件</h2>
+                <h2 style="text-align:center;font-size:0.65rem;color:#999999;padding:0.3rem 0;">你可以用其他应用打开</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup popup-pdf">
+        <div class="content-block">
+            <!-- <p>About</p>
+            <p><a href="#" class="close-popup">Close popup</a></p>
+            <p>Lorem ipsum dolor ...</p> -->
+            <header class="bar bar-nav shay_bar_head">
+                <a class="pull-left close-popup">
+                    <span class="icon icon-left" style="color:#fff;"></span>
+                </a>
+                <h1 class="title">文件预览</h1>
+            </header>
+            <div class="content" style="padding-bottom:0;">
+                <h1 style="text-align:center;padding:2rem 0;"><img src="img/down3.png" style="width:7rem;height:7rem;" /></h1>
+                <a href="#" onclick="javascript:tishianzhuang();" style="display:block;width:90%;margin:0 auto 1.5rem;text-align:center;font-size:0.8rem;color:#fff;height:2rem;line-height:2rem;background-color:#087bbc;border-radius:4px;">安装其他应用打开此文件</a>
+                <h2 style="text-align:center;font-size:0.65rem;color:#999999;padding:0.3rem 0;">运管在线学习暂时不能打开该文件</h2>
+                <h2 style="text-align:center;font-size:0.65rem;color:#999999;padding:0.3rem 0;">你可以用其他应用打开</h2>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" id="cun1">
+    <input type="hidden" id="cuntouxiang">
+    <input type="hidden" id="cun_daoshi_id">
+    <input type="hidden" id="cun_daoshi_huifu_id">
+    <input type="hidden" id="cun_paihang_choose">
+    <input type="hidden" id="cun_kaoshi_time">
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/sm.js"></script>
+<script type="text/javascript" src="js/sm-extend.js"></script>
+<script type="text/javascript" src="js/painlessfs.js"></script>
+<script type="text/javascript">
+$(function () {
+    shayjPush.listen();
+    // 首页轮播图
+    $(document).on("pageInit", "#routers-index-1", function(e, id, page) {
+        var swiper = new Swiper('.swiper-container', {
+          pagination: '.swiper-pagination',
+          paginationClickable: true,
+          spaceBetween: 0,
+          centeredSlides: true,
+          autoplay: 5000
+        });
+        index_red();
+        updata_check();
+        index_init();
+        kecheng_init();
+        // 下拉刷新
+        $(document).on('refresh', '.pull-to-refresh-content-index',function(e) {
+            setTimeout(function() {
+                index_red();
+                updata_check();
+                index_init();
+                kecheng_init();
+                $.pullToRefreshDone();
+            }, 2000);
+        });
+    });
+
+    // banner进入公告列表
+    $(document).on("pageInit", "#index_banner", function(e, id, page) {
+        index_banner_list();
+        // 下拉刷新
+        $(document).on('refresh', '.pull-to-refresh-content-banner',function(e) {
+            setTimeout(function() {
+                index_banner_list();
+                $.pullToRefreshDone();
+            }, 2000);
+        });
+    });
+
+    // 调查问卷列表
+    $(document).on("pageInit", "#index_diaocha", function(e, id, page) {
+        diaochawenjuan_list();
+        // 下拉刷新
+        $(document).on('refresh', '.pull-to-refresh-content-wenjuan',function(e) {
+            setTimeout(function() {
+                diaochawenjuan_list();
+                $.pullToRefreshDone();
+            }, 2000);
+        });
+    });
+
+    // 业务导师列表
+    $(document).on("pageInit", "#index_zaixian", function(e, id, page) {
+        daoshi_list();
+        // 下拉刷新
+        $(document).on('refresh', '.pull-to-refresh-content-daoshi',function(e) {
+            setTimeout(function() {
+                daoshi_list();
+                $.pullToRefreshDone();
+            }, 2000);
+        });
+
+        if(istea == 9){
+            $('#istea').show();
+        }else{
+            $('#istea').hide();
+        }
+    });
+
+    // 业务导师（我是导师）留言列表
+    $(document).on("pageInit", "#index_zaixian_daoshi", function(e, id, page) {
+        daoshi_detail_imtea();
+        // 下拉刷新
+        $(document).on('refresh', '.pull-to-refresh-content-imdaoshi',function(e) {
+            // 模拟2s的加载过程
+            setTimeout(function() {
+                daoshi_detail_imtea();
+                $.pullToRefreshDone();
+            }, 2000);
+        });
+    });
+
+    // 课程列表
+    $(document).on("pageInit", "#routers-index-2", function(e, id, page) {
+        kecheng_choose();
+        $(page).on('click','#kecheng_list div', function () {
+            $(this).addClass('active').siblings().removeClass('active');
+            if($('.tab-link.active').html() == '综合排序'){
+                if($(this).html() != "全<em></em>部"){
+                    kecheng_choose(""+$(this).html()+"","综合排序");
+                }else{
+                    kecheng_choose("全部","综合排序");
+                }
+            }else if($('.tab-link.active').html() == '人气排序'){
+                if($(this).html() != "全<em></em>部"){
+                    kecheng_choose(""+$(this).html()+"","人气排序",2);
+                }else{
+                    kecheng_choose("全部","人气排序",2);
+                }
+            }else if($('.tab-link.active').html() == '下载量排序'){
+                if($(this).html() != "全<em></em>部"){
+                    kecheng_choose(""+$(this).html()+"","下载量排序",3);
+                }else{
+                    kecheng_choose("全部","下载量排序",3);
+                }
+            }
+        });
+
+        // 综合排序
+        $(page).on('click','#kecheng_choose_1', function () {
+            var catname = $('#kecheng_list div.active').html();
+            if(catname != '全<em></em>部'){
+                kecheng_choose(""+catname+"","综合排序");
+            }else{
+                kecheng_choose('全部',"综合排序");
+            }
+        });
+
+        // 人气排序
+        $(page).on('click','#kecheng_choose_2', function () {
+            var catname = $('#kecheng_list div.active').html();
+            if(catname != '全<em></em>部'){
+                kecheng_choose(""+catname+"","人气排序",2);
+            }else{
+                kecheng_choose('全部',"人气排序",2);
+            }
+        });
+
+        // 下载量排序
+        $(page).on('click','#kecheng_choose_3', function () {
+            var catname = $('#kecheng_list div.active').html();
+            if(catname != '全<em></em>部'){
+                kecheng_choose(""+catname+"","下载量排序",3);
+            }else{
+                kecheng_choose('全部',"下载量排序",3);
+            }
+        });
+    });
+
+
+    // 课程详情页
+    $(document).on("pageInit", "#page_index_del", function(e, id, page) {
+        // 评论
+        $(page).on('click','#pinglun', function () {
+            $.modal({
+              text: '<textarea id="kecheng_pl" placeholder="对本课程的评论，字数200字以内" style="width:100%;height:8rem;resize:none;padding:0.3rem;font-size:0.65rem;color:#666666;"></textarea>',
+              buttons: [
+                {
+                  text: '<div style="background-color:#087bbc;color:#ffffff;">提交</div>',
+                  bold: false,
+                  onClick:function(){
+                      kecheng_pinglun();
+                  }
+                }
+              ]
+            })
+        });
+    });
+
+    // 模式题目列表下拉刷新
+    $(document).on("pageInit", "#routers-index-3-1", function(e, id, page) {
+        $(document).on('refresh', '.pull-to-refresh-content-moshiti',function(e) {
+            // 模拟2s的加载过程
+            setTimeout(function() {
+                if($('#moshi_title').html() == '练习模式'){
+                    moshi_detail('练习','练习模式')
+                }else if($('#moshi_title').html() == '闯关模式'){
+                    moshi_detail('闯关','闯关模式')
+                }else if($('#moshi_title').html() == '考试模式'){
+                    moshi_detail('考试','考试模式')
+                }
+                $.pullToRefreshDone();
+            }, 2000);
+        });
+    });
+
+    // 备忘录列表
+    $(document).on("pageInit", "#routers-index-4-2", function(e, id, page) {
+        memorandumlist();
+        // 下拉刷新
+        $(document).on('refresh', '.pull-to-refresh-content-beiwang',function(e) {
+            // 模拟2s的加载过程
+            setTimeout(function() {
+                memorandumlist();
+                $.pullToRefreshDone();
+            }, 2000);
+        });
+    });
+
+    // 新增备忘录
+    $(document).on("pageInit", "#routers-index-4-2-2", function(e, id, page) {
+        $(page).on('click','#membaocun',function(){
+            addmemorandum();
+        });
+    });
+
+    // 备忘录详情（提醒时间+选择提醒操作）
+    $(document).on("pageInit", "#routers-index-4-2-1", function(e, id, page) {
+        $("#datetime-picker1").datetimePicker({
+            toolbarTemplate: '<header class="bar bar-nav">\
+            <button class="button button-link pull-right close-picker">确定</button>\
+            <h1 class="title">请选择日期和时间</h1>\
+            </header>'
+        });
+        $(document).on('click','.create-actions1', function () {
+            var buttons1 = [
+              {
+                text: '请选择',
+                label: true
+              },
+              {
+                text: '<i style="font-style:normal;color:#333333;font-size:.75rem;">需要提醒（以短信方式）</i>',
+                onClick: function() {
+                    $('#tixingfangshi1').html('需要提醒（以短信方式）');
+                }
+              },
+              {
+                text: '<i style="font-style:normal;color:#333333;font-size:.75rem;">不提醒</i>',
+                onClick: function() {
+                    $('#tixingfangshi1').html('不提醒');
+                }
+              }
+            ];
+            var buttons2 = [
+              {
+                text: '取消',
+                bg: 'danger'
+              }
+            ];
+            var groups = [buttons1, buttons2];
+            $.actions(groups);
+        });
+    });
+
+    // 新增备忘录
+    $(document).on("pageInit", "#routers-index-4-2-2", function(e, id, page) {
+        $("#datetime-picker").datetimePicker({
+            toolbarTemplate: '<header class="bar bar-nav">\
+            <button class="button button-link pull-right close-picker">确定</button>\
+            <h1 class="title">请选择日期和时间</h1>\
+            </header>'
+        });
+        $(document).on('click','.create-actions2', function () {
+            var buttons1 = [
+              {
+                text: '请选择',
+                label: true
+              },
+              {
+                text: '<i style="font-style:normal;color:#333333;font-size:.75rem;">需要提醒（以短信方式）</i>',
+                onClick: function() {
+                    $('#tixingfangshi').html('需要提醒（以短信方式）');
+                }
+              },
+              {
+                text: '<i style="font-style:normal;color:#333333;font-size:.75rem;">不提醒</i>',
+                onClick: function() {
+                    $('#tixingfangshi').html('不提醒');
+                }
+              }
+            ];
+            var buttons2 = [
+              {
+                text: '取消',
+                bg: 'danger'
+              }
+            ];
+            var groups = [buttons1, buttons2];
+            $.actions(groups);
+        });
+    });
+
+    // 我的成绩
+    $(document).on("pageInit", "#routers-index-4-5", function(e, id, page) {
+        my_grades();
+        // 下拉刷新
+        $(document).on('refresh', '.pull-to-refresh-content-grades',function(e) {
+            // 模拟2s的加载过程
+            setTimeout(function() {
+                my_grades();
+                $.pullToRefreshDone();
+            }, 2000);
+        });
+    });
+
+    // 我的主页面
+    $(document).on("pageInit", "#routers-index-4", function(e, id, page) {
+        my_init();
+        // 退出登录状态
+        $(page).on('click','#logout',function () {
+            $.confirm('您确定要退出登录吗？', '提 醒', function () {
+                $.showPreloader('正在退出，请稍后...');
+                $.post(RestApi, { c: 'user',a: 'logout'}, function(response){
+                    console.log(response);
+                    var responseObj = $.parseJSON(response);
+                    if(responseObj.code==200){
+                        $.hidePreloader();
+                        $.alert(responseObj.message,function(){
+                            localStorage.setItem('istea','');
+                            localStorage.setItem('userid','');
+                            localStorage.setItem('chijiu_phone','');
+                            localStorage.setItem('chijiu_password','');
+                            window.location.href = "login.html";
+                        });
+                    }else{
+                        $.hidePreloader();
+                        $.alert(responseObj.message);
+                    }
+                });
+            });
+        });
+
+        // 切换网络
+        $(page).on('click','#qiehuan_wang',function () {
+          if(localStorage.getItem('net_local') && localStorage.getItem('net_local') == '10.103.1.204'){
+             localStorage.setItem('net_local','');
+             window.location.href = "login.html";
+          }else{
+             localStorage.setItem('net_local','10.103.1.204');
+             window.location.href = "login.html";
+          }
+        });
+
+        if(localStorage.getItem('net_local') != '10.103.1.204'){
+          $('#qiehuan_zi').html('切换内网');
+        }else{
+          $('#qiehuan_zi').html('切换外网');
+        }
+    });
+
+    // 我的资料页面
+    $(document).on("pageInit", "#routers-index-4-1", function(e, id, page) {
+        // 修改头像
+        $(page).on('click','#my_data_touxiang',function () {
+              var buttons1 = [
+                {
+                  text: '拍照',
+                  onClick: function() {
+                    headImg1('attr','my_data_touxiang','cuntouxiang');
+                  }
+                },
+                {
+                  text: '从手机相册选择',
+                  onClick: function() {
+                    headImg2('attr','my_data_touxiang','cuntouxiang');
+                  }
+                }
+              ];
+              var buttons2 = [
+                {
+                  text: '取消',
+                  bg: 'danger'
+                }
+              ];
+              var groups = [buttons1, buttons2];
+              $.actions(groups);
+        });
+
+        $(page).on('click','#my_data_baocun',function(){
+              my_data_baocun();
+        });
+    });
+
+    // 我的收藏列表
+    $(document).on("pageInit", "#routers-index-4-3", function(e, id, page) {
+        my_collect();
+        // 下拉刷新
+        $(document).on('refresh', '.pull-to-refresh-content-collect',function(e) {
+            // 模拟2s的加载过程
+            setTimeout(function() {
+                my_collect();
+                $.pullToRefreshDone();
+            }, 2000);
+        });
+    });
+
+    // 我的下载列表
+    $(document).on("pageInit", "#routers-index-4-4", function(e, id, page) {
+        my_download();
+        // 下拉刷新
+        $(document).on('refresh', '.pull-to-refresh-content-download',function(e) {
+            // 模拟2s的加载过程
+            setTimeout(function() {
+                my_download();
+                $.pullToRefreshDone();
+            }, 2000);
+        });
+    });
+
+    // 排行榜
+    $(document).on("pageInit", "#routers-index-3-4", function(e, id, page) {
+        paihang_list();
+        $("#picker_paihang").picker({
+            toolbarTemplate: '<header class="bar bar-nav">\
+            <button class="button button-link pull-right close-picker" onclick="javascript:paihang($(\'.picker-selected\').attr(\'data-picker-value\'));">确定</button>\
+            <h1 class="title">请筛选考试排行</h1>\
+            </header>',
+            cols: [
+              {
+                textAlign: 'center',
+                values: paihang_picker
+              }
+            ]
+        });
+        // 下拉刷新
+        $(document).on('refresh', '.pull-to-refresh-content-paihang',function(e) {
+            setTimeout(function() {
+                if($('#picker_paihang').val() != ''){
+                    paihang($('#picker_paihang').val());
+                    paihang_list_shuaxin();
+                }else{
+                    paihang(paihang_picker[0]);
+                    paihang_list_shuaxin();
+                }
+                $.pullToRefreshDone();
+            }, 2000);
+        });
+    });
+
+    $.init();
+});
+</script>
+<script type="text/javascript">
+//=====================enryEventBack======Start===========================
+var enryEventBack = {
+  Listen:function(){
+      document.addEventListener("deviceready", onDeviceReady, false);
+      function onDeviceReady() {
+          document.addEventListener("backbutton", onBackKeyDown, false);
+      }
+      function onBackKeyDown() {
+        $.toast('再点击一次退出APP!');
+        document.removeEventListener("backbutton", onBackKeyDown, false);
+        document.addEventListener("backbutton", exitApp, false);
+        var intervalID = window.setInterval(function() {
+          window.clearInterval(intervalID);
+          document.removeEventListener("backbutton", exitApp, false);
+          document.addEventListener("backbutton", onBackKeyDown, false);
+        }, 3000);
+      }
+      function exitApp(){
+        navigator.app.exitApp();
+      }
+  }
+};
+//=====================enryEventBack======Over===========================
+enryEventBack.Listen();
+</script>
+</body>
+</html>
